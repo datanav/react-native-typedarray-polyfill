@@ -7,9 +7,13 @@ var abs = Math.abs,
   max = Math.max,
   min = Math.min;
 
-Uint8Array.prototype.indexOf = function (searchElement) {
-  console.log("indexOf called", Object(this).length);
+Uint8Array.from = function (buffer) {
+  return new Uint8Array(buffer);
+}
 
+// adapted from https://github.com/inexorabletash/polyfill/blob/master/typedarray.js
+
+Uint8Array.prototype.indexOf = function (searchElement) {
   var t = Object(this);
   var len = ToUint32(t.length);
   if (len === 0) return -1;
@@ -33,8 +37,6 @@ Uint8Array.prototype.indexOf = function (searchElement) {
 };
 
 Uint8Array.prototype.lastIndexOf = function (searchElement) {
-  console.log("lastIndexOf called", Object(this).length);
-
   var t = Object(this);
   var len = ToUint32(t.length);
   if (len === 0) return -1;
